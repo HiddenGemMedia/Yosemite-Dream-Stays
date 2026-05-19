@@ -243,7 +243,7 @@
     .sidebar-brand {
       display: flex;
       align-items: center;
-      margin-bottom: 18px;
+      margin-bottom: 13px;
     }
 
     .sidebar-brand-image {
@@ -251,7 +251,7 @@
       width: 188px;
       max-width: 100%;
       height: auto;
-      margin-left: -4px;
+      margin-left: -9px;
     }
 
     .sidebar-kicker {
@@ -2529,15 +2529,28 @@
       box-shadow: 0 10px 22px rgba(37, 99, 235, 0.08);
       width: 100%;
       max-width: 100%;
+      position: relative;
+    }
+
+    .meta-campaign-table-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 31px;
+      background: linear-gradient(180deg, rgba(239, 246, 255, 0.98) 0%, rgba(245, 249, 255, 0.9) 100%);
+      pointer-events: none;
+      z-index: 0;
     }
 
     .meta-campaign-table-wrap {
       overflow-x: auto;
       overflow-y: hidden;
       max-width: 100%;
-      scrollbar-gutter: stable both-edges;
+      scrollbar-gutter: stable;
       padding-bottom: 10px;
       -webkit-overflow-scrolling: touch;
+      position: relative;
+      z-index: 1;
     }
 
     .meta-campaign-table-wrap::-webkit-scrollbar {
@@ -2570,7 +2583,7 @@
       text-transform: uppercase;
       padding: 10px 16px;
       border-bottom: 1px solid #d7e3f2;
-      background: linear-gradient(180deg, rgba(239, 246, 255, 0.98) 0%, rgba(245, 249, 255, 1) 100%);
+      background: transparent;
       white-space: nowrap;
       text-align: left;
     }

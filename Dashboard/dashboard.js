@@ -835,17 +835,21 @@
       const previousFollowers = previous
         ? numeric(previous.ig_followers) + numeric(previous.fb_followers) + numeric(previous.tiktok_followers)
         : estimatePreviousTotal(totalFollowers, roi.follower_growth_pct);
+      const igViews = numeric(roi.ig_views);
+      const fbViews = numeric(roi.fb_views);
+      const tiktokViews = numeric(roi.tiktok_views);
+      const totalViews = igViews + fbViews + tiktokViews;
 
       return {
         key: key,
         label: formatMonthKey(key),
         shortLabel: formatShortMonthKey(key),
-        totalViews: numeric(roi.total_views),
+        totalViews: totalViews,
         totalViewGrowthText: roi.total_view_growth || "",
         totalViewGrowthValue: parsePercentText(roi.total_view_growth),
-        igViews: numeric(roi.ig_views),
-        fbViews: numeric(roi.fb_views),
-        tiktokViews: numeric(roi.tiktok_views),
+        igViews: igViews,
+        fbViews: fbViews,
+        tiktokViews: tiktokViews,
         igFollowers: igFollowers,
         fbFollowers: fbFollowers,
         tiktokFollowers: tiktokFollowers,
@@ -1501,76 +1505,6 @@
         max: max + padding
       };
     }
-
-    createChart("contentViewsChart", "roi-content", {
-      series: [
-        { name: "Instagram", data: state.roiMonths.map(function (month) { return month.igViews; }) },
-        { name: "Facebook", data: state.roiMonths.map(function (month) { return month.fbViews; }) },
-        { name: "TikTok", data: state.roiMonths.map(function (month) { return month.tiktokViews; }) }
-      ],
-      chart: {
-        type: "bar",
-        height: 220,
-        fontFamily: "Inter, sans-serif",
-        toolbar: { show: false },
-        accessibility: { enabled: false },
-        animations: { enabled: true, easing: "easeinout", speed: 520 },
-        zoom: { enabled: false }
-      },
-      plotOptions: {
-        bar: {
-          horizontal: false,
-          columnWidth: "55%",
-          borderRadius: 6,
-          borderRadiusApplication: "end"
-        }
-      },
-      dataLabels: { enabled: false },
-      stroke: {
-        show: true,
-        width: 2,
-        colors: ["transparent"]
-      },
-      xaxis: {
-        categories: shortLabels,
-        labels: {
-          style: { colors: axisText, fontSize: "12px", fontWeight: 600 }
-        },
-        axisBorder: { show: false },
-        axisTicks: { color: gridColor }
-      },
-      yaxis: {
-        labels: {
-          style: { colors: mutedText, fontSize: "12px", fontWeight: 600 },
-          formatter: formatLargeNumber
-        }
-      },
-      fill: { opacity: 1 },
-      tooltip: {
-        shared: false,
-        intersect: true,
-        theme: "light",
-        y: {
-          formatter: function (value) {
-            return formatNumber(value) + " views";
-          }
-        }
-      },
-      colors: [instagramColor, facebookColor, tiktokColor],
-      grid: {
-        borderColor: gridColor,
-        strokeDashArray: 0,
-        xaxis: { lines: { show: false } }
-      },
-      legend: {
-        position: "bottom",
-        horizontalAlign: "center",
-        fontSize: "13px",
-        fontWeight: 600,
-        labels: { colors: axisText },
-        markers: { radius: 4 }
-      }
-    });
 
     createChart("followersChart", "roi-followers", {
       series: [

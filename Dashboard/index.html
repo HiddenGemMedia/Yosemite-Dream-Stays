@@ -3569,6 +3569,33 @@
       grid-template-columns: 2fr 1fr;
     }
 
+    .pp-awareness {
+      display: grid;
+      gap: 16px;
+    }
+
+    .pp-awareness-top {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: end;
+      gap: 20px;
+      padding: 30px 34px;
+    }
+
+    .pp-awareness-top-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 12px;
+      text-align: right;
+    }
+
+    .pp-awareness-cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
     .pp-grid-12 {
       grid-template-columns: 1fr 2fr;
     }
@@ -4004,6 +4031,16 @@
         grid-template-columns: 1fr;
       }
 
+      .pp-awareness-top,
+      .pp-awareness-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .pp-awareness-top-right {
+        align-items: flex-start;
+        text-align: left;
+      }
+
       .pp-wrap {
         max-width: none;
         padding: 0 22px 72px;
@@ -4267,33 +4304,20 @@
               <div class="pp-stage-line"></div>
               <div class="pp-stage-accent" style="background:var(--pp-orange)"></div>
             </div>
-            <div class="pp-grid pp-grid-21">
-              <div class="pp-glass pp-hero-tile">
+            <div class="pp-awareness">
+              <div class="pp-glass pp-awareness-top">
                 <div>
                   <div class="pp-hero-label">Total Content Views</div>
                   <div class="pp-hero-number" id="contentTotalViewsDisplay">0</div>
-                  <div class="pp-hero-sub" id="contentTotalViewsSubcopy">Across all platforms</div>
                 </div>
-                <div>
-                  <div class="pp-pct-bar">
-                    <div class="pp-pct-labels"><span>Instagram</span><span id="contentInstagramShareText">0%</span></div>
-                    <div class="pp-pct-track"><div class="pp-pct-fill" id="contentInstagramShareBar" style="width:0%;background:var(--pp-blue)"></div></div>
-                  </div>
-                  <div class="pp-pct-bar">
-                    <div class="pp-pct-labels"><span>Facebook</span><span id="contentMetaShareText">0%</span></div>
-                    <div class="pp-pct-track"><div class="pp-pct-fill" id="contentMetaShareBar" style="width:0%;background:var(--pp-orange)"></div></div>
-                  </div>
-                  <div class="pp-pct-bar">
-                    <div class="pp-pct-labels"><span>TikTok</span><span id="contentTiktokShareText">0%</span></div>
-                    <div class="pp-pct-track"><div class="pp-pct-fill" id="contentTiktokShareBar" style="width:0%;background:var(--pp-teal)"></div></div>
-                  </div>
+                <div class="pp-awareness-top-right">
+                  <div class="pp-hero-sub" id="contentTotalViewsSubcopy">Across all platforms</div>
                   <div class="pp-hero-foot">
                     <span class="pp-tag pp-tag-orange" id="contentPeakPill">Current -</span>
-                    <span class="pp-foot-note">Current month visibility</span>
                   </div>
                 </div>
               </div>
-              <div class="pp-side-stack">
+              <div class="pp-awareness-cards">
                 <div class="pp-glass pp-stat">
                   <div class="pp-s-label">IG Views</div>
                   <div class="pp-s-value" id="contentInstagramViews">0</div>
@@ -4309,15 +4333,6 @@
                   <div class="pp-s-value" id="contentTiktokViews">0</div>
                   <div class="pp-s-sub" id="contentTiktokPeakText">Current month</div>
                 </div>
-              </div>
-            </div>
-            <div class="pp-glass pp-chart-tile">
-              <div class="pp-chart-head">
-                <div class="pp-chart-title">Monthly Content Views</div>
-                <div class="pp-chart-sub" id="contentViewsChartSub">Platform breakdown</div>
-              </div>
-              <div class="pp-chart-body pp-chart-body-lg">
-                <div id="contentViewsChart" role="img" aria-label="Monthly content views chart"></div>
               </div>
             </div>
           </section>
@@ -4554,8 +4569,8 @@
     </main>
   </div>
 
-  <script src="./dashboard.config.js?v=20260511a"></script>
-  <script src="./Pricing%20Tool%20Files/pricing-tool.js?v=20260515a"></script>
-  <script src="./dashboard.js?v=20260511a"></script>
+  <script src="./dashboard.config.js?v=20260520c"></script>
+  <script src="./Pricing%20Tool%20Files/pricing-tool.js?v=20260520c"></script>
+  <script src="./dashboard.js?v=20260520c"></script>
 </body>
 </html>

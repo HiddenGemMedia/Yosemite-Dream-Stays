@@ -5,11 +5,6 @@
   "preservedExistingCodes": true,
   "clients": [
     {
-      "clientName": "Abode Luxury Rentals",
-      "clientSlug": "abode-luxury-rentals",
-      "accessCode": "99805"
-    },
-    {
       "clientName": "American River",
       "clientSlug": "american-river",
       "accessCode": "73199"
@@ -50,34 +45,9 @@
       "accessCode": "35491"
     },
     {
-      "clientName": "Casa Oso",
-      "clientSlug": "casa-oso",
-      "accessCode": "48890"
-    },
-    {
-      "clientName": "Casa Oso Ad Account",
-      "clientSlug": "casa-oso-ad-account",
-      "accessCode": "62166"
-    },
-    {
-      "clientName": "Cowan Creek Lodges",
-      "clientSlug": "cowan-creek-lodges",
-      "accessCode": "84026"
-    },
-    {
-      "clientName": "Creekside",
-      "clientSlug": "creekside",
-      "accessCode": "28163"
-    },
-    {
       "clientName": "Dwell Luxury Rentals",
       "clientSlug": "dwell-luxury-rentals",
       "accessCode": "25674"
-    },
-    {
-      "clientName": "Edenwood NC",
-      "clientSlug": "edenwood-nc",
-      "accessCode": "82237"
     },
     {
       "clientName": "Endless Stays",
@@ -118,11 +88,6 @@
       "clientName": "Inspired Retreats",
       "clientSlug": "inspired-retreats",
       "accessCode": "59871"
-    },
-    {
-      "clientName": "Lush Hollow",
-      "clientSlug": "lush-hollow",
-      "accessCode": "81230"
     },
     {
       "clientName": "Myrinn",
@@ -218,16 +183,6 @@
       "clientName": "Wanderin Star Farms",
       "clientSlug": "wanderin-star-farms",
       "accessCode": "21645"
-    },
-    {
-      "clientName": "Wauhatchie Woodlands",
-      "clientSlug": "wauhatchie-woodlands",
-      "accessCode": "61935"
-    },
-    {
-      "clientName": "Yosemite Dream Stays",
-      "clientSlug": "yosemite-dream-stays",
-      "accessCode": "91944"
     }
   ]
 }

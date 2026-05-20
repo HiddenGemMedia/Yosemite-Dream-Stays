@@ -1027,6 +1027,8 @@
 
   function renderRoiDashboard(selectedMonth) {
     const totals = summarizeRoi(state.roiMonths);
+    const metaSpendTotal = sumMetric(state.metaRows || [], "spend");
+    const effectiveAdSpend = totals.adSpend > 0 ? totals.adSpend : metaSpendTotal;
     const peakViewsMonth = highestMonth(state.roiMonths, "totalViews");
     const peakTiktokMonth = highestMonth(state.roiMonths, "tiktokViews");
     const peakTrafficMonth = highestMonth(state.roiMonths, "websiteTraffic");
@@ -1059,7 +1061,7 @@
         : "View data is available from the workbook for the selected months.",
       "Social following grew from " + formatNumber(startedFollowers) + " to " + formatNumber(latestFollowers) + ", adding " + formatNumber(netNewFollowers) + " net new followers.",
       "The selected range generated " + formatNumber(totals.newLeads) + " new leads with an average cost per lead of " + formatCurrency(totals.avgCostPerLead) + ".",
-      "Website traffic totaled " + formatNumber(totals.websiteTraffic) + " sessions while ad spend reached " + formatCurrency(totals.adSpend, 0) + ".",
+      "Website traffic totaled " + formatNumber(totals.websiteTraffic) + " sessions while ad spend reached " + formatCurrency(effectiveAdSpend, 0) + ".",
       "Direct booking revenue totaled " + formatCurrency(totals.directRevenue, 0) + ", representing a " + formatPercent(totals.directSplitShare, 0) + " direct split.",
       peakRevenueMonth
         ? peakRevenueMonth.label + " was the top revenue month at " + formatCurrency(peakRevenueMonth.totalRevenue, 0) + "."
@@ -1144,7 +1146,7 @@
     setText(els.websiteTotalSessions, formatRoiCompactNumber(totals.websiteTraffic));
     setText(els.websitePeakLabel, peakTrafficMonth ? peakTrafficMonth.shortLabel.toUpperCase() + " " + peakTrafficMonth.key.slice(0, 4) + " PEAK" : "Peak Month");
     setText(els.websitePeakValue, peakTrafficMonth ? formatNumber(peakTrafficMonth.websiteTraffic) : "0");
-    setText(els.websiteTotalAdSpend, formatCurrency(totals.adSpend, 0));
+    setText(els.websiteTotalAdSpend, formatCurrency(effectiveAdSpend, 0));
     setText(
       els.websiteTrafficChartSub,
       peakTrafficMonth
@@ -2204,7 +2206,7 @@
         '<div class="meta-campaign-table-card"><div class="meta-campaign-table-wrap"><table class="meta-campaign-table">',
         "<thead><tr><th>Month</th><th>Spend</th><th>Revenue</th><th>ROAS</th><th>Impressions</th><th>Page Visits</th><th>Bookings</th><th>Cost/Booking</th><th>Cost/Booking %</th></tr></thead>",
         "<tbody>",
-        rows.map(renderMetaCampaignTableRow).join(""),
+        rows.slice().reverse().map(renderMetaCampaignTableRow).join(""),
         "</tbody></table></div></div>",
         '<div class="meta-retarget-feature-grid" style="margin-top:22px;">',
         '<div class="meta-retarget-kpi-stack">',
@@ -2228,7 +2230,7 @@
       '<div class="meta-campaign-table-card"><div class="meta-campaign-table-wrap"><table class="meta-campaign-table">',
       "<thead><tr><th>Month</th><th>Spend</th><th>Revenue</th><th>ROAS</th><th>Impressions</th><th>Followers</th><th>Page Visits</th><th>Bookings</th><th>Cost/Booking</th><th>Cost/Booking %</th></tr></thead>",
       "<tbody>",
-      rows.map(renderMetaDiscoveryCampaignTableRow).join(""),
+      rows.slice().reverse().map(renderMetaDiscoveryCampaignTableRow).join(""),
       "</tbody></table></div></div>",
       isDiscovery
         ? [
@@ -2559,11 +2561,12 @@
   }
 
   function renderMetaKpiNoSpark(label, months, valueGetter, formatter) {
+    const displayMonths = (months || []).slice().reverse();
     return [
       '<div class="meta-kpi meta-kpi-no-spark">',
       '<div class="meta-kpi-label">' + escapeHtml(label) + "</div>",
       '<div class="meta-kpi-months">',
-      months.map(function (month, index) {
+      displayMonths.map(function (month, index) {
         return [
           index ? '<div class="meta-kpi-divider"></div>' : "",
           '<div class="meta-kpi-row">',
@@ -3198,7 +3201,7 @@
         };
       }
 
-      monthMap[row.key].totalSpend += row.spend;
+      monthMap[row.key].totalSpend += numeric(row.spend);
       monthMap[row.key].attributedRevenue += numeric(row.revenue);
       monthMap[row.key].blendedRoas = Math.max(monthMap[row.key].blendedRoas, numeric(row.blendedRoas) || numeric(row.roas));
       monthMap[row.key].avgBookingValue = Math.max(monthMap[row.key].avgBookingValue, numeric(row.avgBookingValue));

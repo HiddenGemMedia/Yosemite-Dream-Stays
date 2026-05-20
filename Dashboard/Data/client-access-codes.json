@@ -80,6 +80,11 @@
       "accessCode": "42154"
     },
     {
+      "clientName": "HGM Client",
+      "clientSlug": "hgm-client",
+      "accessCode": "12345"
+    },
+    {
       "clientName": "Home Base",
       "clientSlug": "home-base",
       "accessCode": "80511"

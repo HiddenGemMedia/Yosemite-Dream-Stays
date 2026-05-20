@@ -288,7 +288,7 @@ def collect_comments(row_map: dict[str, object], *comment_keys: str) -> str:
 def find_roi_header_row(sheet) -> tuple[int | None, list[str]]:
     for row_index, row in enumerate(sheet.iter_rows(min_row=1, max_row=6, values_only=True), start=1):
         headers = [normalize_header(value) for value in row]
-        if "timeline" in headers:
+        if "timeline" in headers or "month" in headers:
             return row_index, headers
     return None, []
 

@@ -1028,7 +1028,7 @@
   function renderRoiDashboard(selectedMonth) {
     const totals = summarizeRoi(state.roiMonths);
     const metaSpendTotal = sumMetric(state.metaRows || [], "spend");
-    const effectiveAdSpend = totals.adSpend > 0 ? totals.adSpend : metaSpendTotal;
+    const effectiveAdSpend = metaSpendTotal > 0 ? metaSpendTotal : totals.adSpend;
     const peakViewsMonth = highestMonth(state.roiMonths, "totalViews");
     const peakTiktokMonth = highestMonth(state.roiMonths, "tiktokViews");
     const peakTrafficMonth = highestMonth(state.roiMonths, "websiteTraffic");
